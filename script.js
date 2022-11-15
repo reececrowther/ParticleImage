@@ -1,20 +1,9 @@
 window.onload = function(){
-    defaultUrl = 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png';
-    imageToParticles(defaultUrl);
-}
-
-function changeImage(){
-    const url = document.getElementById("url").value;
-    console.log(url);
-    imageToParticles(url);
-}
-
-
-function imageToParticles(url){
-
+    //starting Image
     const image = document.getElementById('image1');
+    defaultUrl = 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png';
 
-    function toDataURL(url, callback) {
+    function toDataURL(defaultUrl, callback) {
         var xhr = new XMLHttpRequest();
         xhr.onload = function() {
           var reader = new FileReader();
@@ -23,18 +12,33 @@ function imageToParticles(url){
           }
           reader.readAsDataURL(xhr.response);
         };
-        xhr.open('GET', url);
+        xhr.open('GET', defaultUrl);
         xhr.responseType = 'blob';
         xhr.send();
       }
       
-      toDataURL(url, function(dataUrl) {
+      toDataURL(defaultUrl, function(dataUrl) {
         image.src = dataUrl;
       });
 
+      imageToParticles();
+}
+
+//on Upload Image Change
+var loadFile = function(event) {
+    event.preventDefault();
+    const image = document.getElementById('image1');
+    image.src = URL.createObjectURL(event.target.files[0]);
+    
+    imageToParticles();
+
+    return false;
+}
 
 
+function imageToParticles(){
 
+//Delay
 setTimeout(function(){
 
 

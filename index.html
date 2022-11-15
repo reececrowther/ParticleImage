@@ -12,13 +12,7 @@
     <img id="image1" src="">
     
     <div class="controls">
-        <form onsubmit="changeImage();return false">
-            <input type="url" name="url" id="url"
-            placeholder="https://image.png"
-            pattern="https://.*" size="30"
-            required>
-            <button type="submit">upload</button>
-        </form>
+            <input type="file" id="imageInput" accept="image/png" required onchange="loadFile(event)">
     </div>
     
     <script src="script.js"></script>
